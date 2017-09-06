@@ -72,7 +72,7 @@ namespace Ex04.Menus.Interfaces
                     }
                     else
                     {
-                        // EXIT From Menu
+                        Environment.Exit(Environment.ExitCode); // Need to check again 
                     }
                 }
                 
