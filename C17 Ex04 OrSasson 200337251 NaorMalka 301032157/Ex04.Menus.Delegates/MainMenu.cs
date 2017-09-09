@@ -14,9 +14,17 @@ namespace Ex04.Menus.Delegates
         public void Show()
         { 
             ExecuteMenuSelection();
+            showExitMessage();
+     
         }
 
-         override protected internal string getAbortCurrentMenuText()
+        private void showExitMessage()
+        {
+            Console.WriteLine("Thank You For Using Our App!! Hope to see u again :)");
+            Console.ReadKey();
+        }
+
+        override protected internal string getAbortCurrentMenuText()
         {
             return k_AbortCurrentMenu;
         }

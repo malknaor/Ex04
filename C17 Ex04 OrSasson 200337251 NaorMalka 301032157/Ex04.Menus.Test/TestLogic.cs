@@ -13,18 +13,18 @@ namespace Ex04.Menus.Test
         internal static void CountSpacesInString()
         {
             Console.Clear();
-            Console.WriteLine("Please enter a sentence, We will count the number of spaces in it for you!");
+            Console.WriteLine("Please Enter a sentence, and we will count the number of spaces in it for you!");
 
             string inputtedSentence = Console.ReadLine();
             int numOfSpaces = CountCharOccurancesInString(inputtedSentence, ' ');
 
-            Console.WriteLine("The number Of spaces in your string is {0}", numOfSpaces.ToString());
-            PressAnyKeyToContinue();
+            Console.WriteLine("The number of spaces in your string is: {0}", numOfSpaces.ToString());
+            printPressAnyKeyToContinue();
         }
 
-        private static void PressAnyKeyToContinue()
+        private static void printPressAnyKeyToContinue()
         {
-            Console.WriteLine("Enter any key to go back to the previous menu");
+            Console.WriteLine(Environment.NewLine + "Press any key to go back to the previous menu");
             Console.ReadKey();
             Console.Clear();
         }
@@ -46,7 +46,7 @@ namespace Ex04.Menus.Test
         {
             Console.Clear();
             Console.WriteLine("The current Version is: {0}", GetVersionNumber());
-            PressAnyKeyToContinue();
+            printPressAnyKeyToContinue();
             
         }
 
@@ -59,7 +59,7 @@ namespace Ex04.Menus.Test
         {
             Console.Clear();
             Console.WriteLine("The current Time is: {0}", DateTime.Now.ToString("T"));
-            PressAnyKeyToContinue();
+            printPressAnyKeyToContinue();
             return;
         }
 
@@ -67,7 +67,7 @@ namespace Ex04.Menus.Test
         {
             Console.Clear();
             Console.WriteLine("The current date is: {0}", DateTime.Now.Date.ToString("D"));
-            PressAnyKeyToContinue();
+            printPressAnyKeyToContinue();
             return;
         }
     }

@@ -31,7 +31,6 @@ namespace Ex04.Menus.Delegates
 
         protected internal override void ExecuteMenuSelection()
         {
-          
             bool userQuit = false;
             Console.Clear();
 
@@ -51,17 +50,17 @@ namespace Ex04.Menus.Delegates
           
         }
 
-        private void runUserSelection(int i_MenuItemIdx, out bool userQuit)
+        private void runUserSelection(int i_MenuItemIndex, out bool userQuit)
         {
             userQuit = false;
 
-            if (i_MenuItemIdx == 0) // This is stupid, again - the enum will take care of it.
+            if (i_MenuItemIndex == 0) // This is stupid, again - the enum will take care of it.
             {
                 userQuit = true;
             }
             else
             {
-                r_MenuItemsList[i_MenuItemIdx - 1].ExecuteMenuSelection(); // Maybe this method should be smart enough to quit itself.
+                r_MenuItemsList[i_MenuItemIndex - 1].ExecuteMenuSelection(); // Maybe this method should be smart enough to quit itself.
             }
         }
 
@@ -69,10 +68,10 @@ namespace Ex04.Menus.Delegates
         {
             int userSelectionAsInt;
 
-            bool isInteger = int.TryParse(i_StrToValidate, out userSelectionAsInt);
-            bool isSelectionInRange = userSelectionAsInt >= 0 && userSelectionAsInt <= r_MenuItemsList.Count;
+            bool isInputInteger = int.TryParse(i_StrToValidate, out userSelectionAsInt);
+            bool isMenuIndexInRange = userSelectionAsInt >= 0 && userSelectionAsInt <= r_MenuItemsList.Count;
 
-            return isInteger && isSelectionInRange;
+            return isInputInteger && isMenuIndexInRange;
         }
 
         private int GetSelectedItem()
@@ -91,15 +90,16 @@ namespace Ex04.Menus.Delegates
         private void showInvalidInputMessage()
         {
             Console.Clear();
-            Console.WriteLine("Invalid Input!");
-            Console.WriteLine("Press any key to go back to the previous menu.");
+            Console.WriteLine(
+@"Invalid Input! Try again.
+Press any key to go back to the previous menu.");
             Console.ReadLine();
             Console.Clear();
         }
 
         private void askToSelectItem()
         {
-            Console.WriteLine("Please Enter your desired option from the menu.");
+            Console.WriteLine("Please enter your desired option from the menu.");
         }
 
         private void displayCurrentMenuLevel()
@@ -111,8 +111,13 @@ namespace Ex04.Menus.Delegates
 
         private void printMenuTitle()
         {
+            StringBuilder sb = new StringBuilder();
             Console.WriteLine(Name);
-            Console.WriteLine("-------------------------");
+            foreach (char ch in Name)
+            {
+                sb.Append("-");
+            }
+            Console.WriteLine(sb);
         }
 
         private void printCurrentMenuItems()
@@ -124,6 +129,7 @@ namespace Ex04.Menus.Delegates
                 Console.WriteLine("[{0}] - {1}", idx.ToString(), menuItem.Name);
                 idx++;
             }
+            
             Console.WriteLine("[0] - {0}", getAbortCurrentMenuText());
         }
 
