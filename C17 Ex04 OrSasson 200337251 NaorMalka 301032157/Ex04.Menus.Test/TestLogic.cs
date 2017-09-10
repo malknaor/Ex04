@@ -22,7 +22,7 @@ namespace Ex04.Menus.Test
             printPressAnyKeyToContinue();
         }
 
-        private static void printPressAnyKeyToContinue()
+        internal static void printPressAnyKeyToContinue()
         {
             Console.WriteLine(Environment.NewLine + "Press any key to go back to the previous menu");
             Console.ReadKey();

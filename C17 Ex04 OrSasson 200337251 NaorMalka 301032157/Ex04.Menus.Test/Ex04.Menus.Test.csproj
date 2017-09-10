@@ -36,9 +36,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShowDateItem.cs" />
+    <Compile Include="ShowTimeItem.cs" />
+    <Compile Include="SpaceCounterItem.cs" />
     <Compile Include="TestLogic.cs" />
     <Compile Include="MenuWithDelegates.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="VersionNumberItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
