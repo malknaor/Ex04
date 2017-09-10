@@ -76,13 +76,13 @@ namespace Ex04.Menus.Interfaces
         {
             userQuit = false;
 
-            if (i_MenuItemIndex == 0) // This is stupid, again - the enum will take care of it.
+            if (i_MenuItemIndex == 0) 
             {
                 userQuit = true;
             }
             else
             {
-                r_MenuItems[i_MenuItemIndex - 1].Execute(); // Maybe this method should be smart enough to quit itself.
+                r_MenuItems[i_MenuItemIndex - 1].Execute();
             }
         }
 

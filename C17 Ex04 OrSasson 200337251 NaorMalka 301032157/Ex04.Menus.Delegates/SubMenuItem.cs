@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Delegates
 {
-    // Maybe Clearing the screen and watiing for user to hit key should be here in this class??
-    // Causes me to duplicate code in the TestLogic class.
+ 
     public class SubMenuItem : MenuItem
     {
         private const string k_AbortCurrentMenu = "Back";
@@ -18,7 +17,6 @@ namespace Ex04.Menus.Delegates
             get { return r_MenuItemsList; }
         }
     
-        // Better names...
         public SubMenuItem(string i_Name, string i_AbortOption = k_AbortCurrentMenu) : base(i_Name)
         {
             r_MenuItemsList = new List<MenuItem>();
