@@ -12,7 +12,5 @@ namespace Ex04.Menus.Test
         {
             MenuWithDelegates DelegateMenu = new MenuWithDelegates();
         }
-
-
     }
 }
