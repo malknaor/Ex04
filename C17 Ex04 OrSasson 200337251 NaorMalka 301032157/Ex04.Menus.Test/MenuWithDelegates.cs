@@ -23,7 +23,7 @@ namespace Ex04.Menus.Test
 
         public MenuWithDelegates()
         {
-            r_MainMenu = new MainMenu("Welcome to the Main Menu!");
+            r_MainMenu = new MainMenu("Welcome to the Main Menu!(Delegate implementation)");
 
             r_VersionAndSpacesSubMenu = new SubMenuItem("Version and Spaces");
             r_CountSpacesActionMenu = new ActionMenuItem("Count Spaces");
