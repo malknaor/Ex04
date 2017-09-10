@@ -13,7 +13,7 @@ namespace Ex04.Menus.Test
 
         // First Sub Menu.
         private readonly SubMenuItem r_VersionAndSpacesSubMenu;
-        private readonly ActionMenuItem r_CountSpacesActionMenu; // Rename to CountSpacesActionMenu (and the rest too)?
+        private readonly ActionMenuItem r_CountSpacesActionMenu; 
         private readonly ActionMenuItem r_ShowVersionActionMenu;
 
         //Second Sub Menu.

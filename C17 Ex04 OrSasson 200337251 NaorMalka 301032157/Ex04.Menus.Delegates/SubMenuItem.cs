@@ -51,13 +51,13 @@ namespace Ex04.Menus.Delegates
         {
             userQuit = false;
 
-            if (i_MenuItemIndex == 0) // This is stupid, again - the enum will take care of it.
+            if (i_MenuItemIndex == 0) 
             {
                 userQuit = true;
             }
             else
             {
-                r_MenuItemsList[i_MenuItemIndex - 1].ExecuteMenuSelection(); // Maybe this method should be smart enough to quit itself.
+                r_MenuItemsList[i_MenuItemIndex - 1].ExecuteMenuSelection(); 
             }
         }
 
