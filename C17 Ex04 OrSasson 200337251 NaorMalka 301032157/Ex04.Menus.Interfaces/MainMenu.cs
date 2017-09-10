@@ -22,5 +22,10 @@ namespace Ex04.Menus.Interfaces
                 return m_MenuRoot;
             }
         }
+
+        public void Show()
+        {
+            MenuRoot.RunMenu();
+        }
     }
 }

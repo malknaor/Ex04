@@ -10,31 +10,29 @@ namespace Ex04.Menus.Test
     class MenuWithInterfaces
     {
         private readonly MainMenu r_MainMenu;
-        //// First Sub Menu.
-        //private readonly SubMenuItem r_VersionAndSpacesSubMenu;
-        //private readonly ActionMenuItem r_CountSpacesActionMenu; // Rename to CountSpacesActionMenu (and the rest too)?
-        //private readonly ActionMenuItem r_ShowVersionActionMenu;
-
-        ////Second Sub Menu.
-        //private readonly SubMenuItem r_ShowDateAndTimeSubMenu;
-        //private readonly ActionMenuItem r_ShowDateActionMenuItem;
-        //private readonly ActionMenuItem r_ShowTimeActionMenuItem;
-
+        private readonly ShowDateItem r_Date;
+        private readonly ShowTimeItem r_Time;
+        private readonly SpaceCounterItem r_SpaceCount;
+        private readonly VersionNumberItem r_Version;
 
         public MenuWithInterfaces()
         {
             r_MainMenu = new MainMenu();
             MenuItem subMenuToAdd = null;
-            //first menu option
-            subMenuToAdd = MainMenu.MenuRoot.AddMenuItem("Version and Spaces");
-            subMenuToAdd.AddExecutableItem("Count Spaces", );
-            subMenuToAdd.AddExecutableItem("Show Version", );
+            r_Date = new ShowDateItem();
+            r_Time = new ShowTimeItem();
+            r_SpaceCount = new SpaceCounterItem();
+            r_Version = new VersionNumberItem();
 
-            //second menu option
-            //MainMenu.MenuRoot.AddMenuItem("Show Date And Time");
+            subMenuToAdd = MainMenu.MenuRoot.AddMenuItem("Version and Spaces");
+            subMenuToAdd.AddExecutableItem("Count Spaces", r_SpaceCount);
+            subMenuToAdd.AddExecutableItem("Show Version", r_Version);
+
             subMenuToAdd = MainMenu.MenuRoot.AddMenuItem("Show Date and Time");
-            subMenuToAdd.AddExecutableItem("Show Date", );
-            subMenuToAdd.AddExecutableItem("Show Time", );
+            subMenuToAdd.AddExecutableItem("Show Date", r_Time);
+            subMenuToAdd.AddExecutableItem("Show Time", r_Date);
+
+            MainMenu.Show();
         }
 
         public MainMenu MainMenu
@@ -45,6 +43,4 @@ namespace Ex04.Menus.Test
             }
         }
     }
-
-
 }
