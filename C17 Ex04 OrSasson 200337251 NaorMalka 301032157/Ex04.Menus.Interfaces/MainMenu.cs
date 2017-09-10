@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    class MainMenu
+    public class MainMenu 
     {
         private readonly MenuItem m_MenuRoot;
 
@@ -15,7 +15,7 @@ namespace Ex04.Menus.Interfaces
             m_MenuRoot = new MenuItem("Main Menu", null);
         }
 
-        internal MenuItem MenuRoot
+        public MenuItem MenuRoot
         {
             get
             {

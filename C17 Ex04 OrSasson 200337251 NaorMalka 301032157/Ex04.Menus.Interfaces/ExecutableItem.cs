@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    class ExecutableItem : Item , IExecutable
+    public class ExecutableItem : Item , IExecutable
     {
         private readonly IExecutable m_Executable;
 

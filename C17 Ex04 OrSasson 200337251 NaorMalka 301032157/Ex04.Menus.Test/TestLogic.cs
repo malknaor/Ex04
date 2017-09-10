@@ -32,6 +32,7 @@ namespace Ex04.Menus.Test
         private static int CountCharOccurancesInString(string i_Str, char i_CharToCount)
         {
             int CharCount = 0;
+
             foreach (char ch in i_Str)
             {
                 if(ch == i_CharToCount)
@@ -39,6 +40,7 @@ namespace Ex04.Menus.Test
                     CharCount++;
                 }
             }
+
             return CharCount;
         }
      
@@ -47,7 +49,6 @@ namespace Ex04.Menus.Test
             Console.Clear();
             Console.WriteLine("The current Version is: {0}", GetVersionNumber());
             printPressAnyKeyToContinue();
-            
         }
 
         private static string GetVersionNumber()
@@ -60,7 +61,6 @@ namespace Ex04.Menus.Test
             Console.Clear();
             Console.WriteLine("The current Time is: {0}", DateTime.Now.ToString("T"));
             printPressAnyKeyToContinue();
-            return;
         }
 
         internal static void ShowDate()
@@ -68,7 +68,6 @@ namespace Ex04.Menus.Test
             Console.Clear();
             Console.WriteLine("The current date is: {0}", DateTime.Now.Date.ToString("D"));
             printPressAnyKeyToContinue();
-            return;
         }
     }
 }

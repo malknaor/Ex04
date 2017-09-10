@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    internal abstract class Item
+    public abstract class Item
     {
         readonly string m_ItemText;
 
@@ -29,6 +29,5 @@ namespace Ex04.Menus.Interfaces
         }
 
         public abstract void Execute();
-
     }
 }

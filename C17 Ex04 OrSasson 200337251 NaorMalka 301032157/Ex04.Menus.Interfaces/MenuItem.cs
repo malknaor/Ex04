@@ -6,36 +6,39 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    internal class MenuItem : Item , IExecutable
+    public class MenuItem : Item, IExecutable
     {
-        private readonly List<Item> m_MenuItems;
-        private readonly MenuItem m_Root; // This will enable us to have the back option and if NULL will exit.
+        private readonly List<Item> r_MenuItems;
+        private readonly MenuItem r_Root;
 
         public MenuItem(string i_Text, MenuItem i_Root) : base(i_Text)
         {
-            m_MenuItems = new List<Item>();
-            m_Root = i_Root;
+            r_MenuItems = new List<Item>();
+            r_Root = i_Root;
         }
 
-        internal List<Item> MenuItems
+        public List<Item> MenuItems
         {
             get
             {
-                return m_MenuItems;
+                return r_MenuItems;
             }
         }
 
-        internal MenuItem Root
+        public MenuItem Root
         {
             get
             {
-                return m_Root;
+                return r_Root;
             }
         }
 
-        public void AddMenuItem(string i_Text)
+        public MenuItem AddMenuItem(string i_Text)
         {
-            MenuItems.Add(new MenuItem(i_Text, this));
+            MenuItem menuToAdd = new MenuItem(i_Text, this);
+            MenuItems.Add(menuToAdd);
+            
+            return menuToAdd;
         }
 
         public void AddExecutableItem(string i_Text, IExecutable i_Executable)
@@ -53,46 +56,54 @@ namespace Ex04.Menus.Interfaces
             int chosenOption;
             string userChoice = string.Empty;
             bool tryParseSucceed = false;
+            bool validInput;
 
             do
             {
                 displayMenu();
                 userChoice = Console.ReadLine();
                 tryParseSucceed = int.TryParse(userChoice, out chosenOption);
+                validInput = checkValidInput(chosenOption);
 
                 if (!tryParseSucceed)
                 {
                     Console.WriteLine("Illegal input! please try again.");
                 }
-                else if (chosenOption == 0)
+                else if (validInput)
                 {
-                    if (Root != null)
+                    if (chosenOption == 0)
                     {
-                        Root.RunMenu();
-                    }
-                    else
-                    {
-                        Environment.Exit(Environment.ExitCode); // Need to check again 
+                        if (Root != null)
+                        {
+                            Root.RunMenu();
+                        }
+                        else
+                        {
+                            Environment.Exit(Environment.ExitCode); // Need to check again 
+                        }
                     }
                 }
-                
+
             }
             while (!tryParseSucceed);
 
             MenuItems[chosenOption].Execute();
         }
 
-        internal void displayMenu()
+        private void displayMenu()
         {
             int countItemsInMenu;
 
             Console.Clear();
             countItemsInMenu = 0;
 
-            Console.WriteLine("{0}.{1}", countItemsInMenu, generateExitOrBackString());
+            Console.WriteLine("-- [{0}] --", this.ItemText); 
+            Console.WriteLine("[{0] - [{1}]", countItemsInMenu, generateExitOrBackString());
+            countItemsInMenu++;
+
             foreach (Item item in MenuItems)
             {
-                Console.WriteLine("{0}.{1}", countItemsInMenu, item.ToString());
+                Console.WriteLine("[{0}] - [{1}]", countItemsInMenu, item.ToString());
                 countItemsInMenu++;
             }
         }
@@ -101,10 +112,10 @@ namespace Ex04.Menus.Interfaces
         {
             return Root != null ? "Back" : "Exit";
         }
-
-        //internal int getUserInput()
-        //{
-
-        //}
+        
+        private bool checkValidInput(int i_UserChoice)
+        {
+            return i_UserChoice >= 0 && i_UserChoice <= this.MenuItems.Count;
+        }
     }
 }
