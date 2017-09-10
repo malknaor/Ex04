@@ -57,37 +57,46 @@ namespace Ex04.Menus.Interfaces
             string userChoice = string.Empty;
             bool tryParseSucceed = false;
             bool validInput;
+            bool toQuit = false;
 
             do
             {
-                displayMenu();
-                userChoice = Console.ReadLine();
-                tryParseSucceed = int.TryParse(userChoice, out chosenOption);
-                validInput = checkValidInput(chosenOption);
+                do
+                {
+                    displayMenu();
+                    userChoice = Console.ReadLine();
+                    tryParseSucceed = int.TryParse(userChoice, out chosenOption);
+                    validInput = checkValidInput(chosenOption);
 
-                if (!tryParseSucceed)
-                {
-                    Console.WriteLine("Illegal input! please try again.");
-                }
-                else if (validInput)
-                {
-                    if (chosenOption == 0)
+                    if (!tryParseSucceed)
                     {
-                        if (Root != null)
+                        Console.WriteLine("Illegal input! please try again.");
+                    }
+                    else if (validInput)
+                    {
+                        if (chosenOption == 0)
                         {
-                            Root.RunMenu();
-                        }
-                        else
-                        {
-                            Environment.Exit(Environment.ExitCode); // Need to check again 
+                            if (Root != null)
+                            {
+                                Root.RunMenu();
+                            }
+                            else
+                            {
+                                toQuit = true; // Need to check again 
+                            }
                         }
                     }
                 }
+                while (!tryParseSucceed && !toQuit);
 
+                if (!toQuit)
+                {
+                    MenuItems[chosenOption - 1].Execute();
+                }
             }
-            while (!tryParseSucceed);
+            while (!toQuit);
 
-            MenuItems[chosenOption].Execute();
+
         }
 
         private void displayMenu()
@@ -95,17 +104,27 @@ namespace Ex04.Menus.Interfaces
             int countItemsInMenu;
 
             Console.Clear();
-            countItemsInMenu = 0;
+            countItemsInMenu = 1;
+            string exitOrBack = string.Empty;
+
+            if (Root != null)
+            {
+                exitOrBack = "Back";
+            }
+            else
+            {
+                exitOrBack = "Exit";
+            }
 
             Console.WriteLine("-- [{0}] --", this.ItemText);
-            Console.WriteLine("[{0] - [{1}]", countItemsInMenu, generateExitOrBackString());
-            countItemsInMenu++;
-
+           
             foreach (Item item in MenuItems)
             {
                 Console.WriteLine("[{0}] - [{1}]", countItemsInMenu, item.ToString());
                 countItemsInMenu++;
             }
+
+            Console.WriteLine("[0] - [{0}]", exitOrBack);
         }
 
         private string generateExitOrBackString()
