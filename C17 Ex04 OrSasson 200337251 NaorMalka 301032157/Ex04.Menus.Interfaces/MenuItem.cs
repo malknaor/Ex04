@@ -53,50 +53,110 @@ namespace Ex04.Menus.Interfaces
 
         public void RunMenu()
         {
-            int chosenOption;
-            string userChoice = string.Empty;
-            bool tryParseSucceed = false;
-            bool validInput;
-            bool toQuit = false;
+            bool userQuit = false;
+            Console.Clear();
 
-            do
-            {
-                do
-                {
-                    displayMenu();
-                    userChoice = Console.ReadLine();
-                    tryParseSucceed = int.TryParse(userChoice, out chosenOption);
-                    validInput = checkValidInput(chosenOption);
-
-                    if (!tryParseSucceed)
-                    {
-                        Console.WriteLine("Illegal input! please try again.");
-                    }
-                    else if (validInput)
-                    {
-                        if (chosenOption == 0)
-                        {
-                            if (Root != null)
-                            {
-                                Root.RunMenu();
-                            }
-                            else
-                            {
-                                toQuit = true; // Need to check again 
-                            }
-                        }
-                    }
-                }
-                while (!tryParseSucceed && !toQuit);
-
-                if (!toQuit)
-                {
-                    MenuItems[chosenOption - 1].Execute();
-                }
+            if (menuIsEmpty())
+            { // Menu should have at least one item in order to exist...
+                throw new ArgumentOutOfRangeException("Cannot Select Empty Menu!");
             }
-            while (!toQuit);
 
+            // Main loop of the menu.
+            while (!userQuit)
+            {
+                displayCurrentMenuLevel();
+                int userSelection = getSelectedItem();
+                runUserSelection(userSelection, out userQuit);
+                Console.Clear();
+            }
 
+        }
+
+        private void runUserSelection(int i_MenuItemIndex, out bool userQuit)
+        {
+            userQuit = false;
+
+            if (i_MenuItemIndex == 0) // This is stupid, again - the enum will take care of it.
+            {
+                userQuit = true;
+            }
+            else
+            {
+                r_MenuItems[i_MenuItemIndex - 1].Execute(); // Maybe this method should be smart enough to quit itself.
+            }
+        }
+
+        private int getSelectedItem()
+        {
+            string userSelectionStr = Console.ReadLine();
+
+            while (!validateInputtedSelection(userSelectionStr))
+            {
+                showInvalidInputMessage();
+                displayCurrentMenuLevel();
+                userSelectionStr = Console.ReadLine();
+            }
+            return int.Parse(userSelectionStr);
+        }
+
+        private void showInvalidInputMessage()
+        {
+            Console.Clear();
+            Console.WriteLine(
+@"Invalid Input! Try again.
+Press any key to go back to the previous menu.");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        private bool validateInputtedSelection(string i_StrToValidate)
+        {
+            int userSelectionAsInt;
+
+            bool isInputInteger = int.TryParse(i_StrToValidate, out userSelectionAsInt);
+            bool isMenuIndexInRange = userSelectionAsInt >= 0 && userSelectionAsInt <= r_MenuItems.Count;
+
+            return isInputInteger && isMenuIndexInRange;
+        }
+
+        private bool menuIsEmpty()
+        {
+            return r_MenuItems.Count == 0;
+        }
+
+        private void displayCurrentMenuLevel()
+        {
+            printMenuTitle();
+            printCurrentMenuItems();
+            askToSelectItem();
+        }
+
+        private void askToSelectItem()
+        {
+            Console.WriteLine("Please enter your desired option from the menu.");
+        }
+        private void printCurrentMenuItems()
+        {
+            int idx = 1;
+
+            foreach (Item menuItem in r_MenuItems)
+            {
+                Console.WriteLine("[{0}] - {1}", idx.ToString(), menuItem.ItemText);
+                idx++;
+            }
+
+            Console.WriteLine("[0] - {0}", generateExitOrBackString());
+        }
+
+        private void printMenuTitle()
+        {
+            StringBuilder sb = new StringBuilder();
+            Console.WriteLine(ItemText);
+            foreach (char ch in ItemText)
+            {
+                sb.Append("-");
+            }
+            Console.WriteLine(sb);
         }
 
         private void displayMenu()

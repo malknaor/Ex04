@@ -43,11 +43,10 @@ namespace Ex04.Menus.Delegates
             while (!userQuit)
             {
                 displayCurrentMenuLevel();
-                int userSelection = GetSelectedItem();
+                int userSelection = getSelectedItem();
                 runUserSelection(userSelection, out userQuit);
                 Console.Clear();
             }
-          
         }
 
         private void runUserSelection(int i_MenuItemIndex, out bool userQuit)
@@ -64,7 +63,7 @@ namespace Ex04.Menus.Delegates
             }
         }
 
-        private bool ValidateInputtedSelection(string i_StrToValidate)
+        private bool validateInputtedSelection(string i_StrToValidate)
         {
             int userSelectionAsInt;
 
@@ -74,11 +73,11 @@ namespace Ex04.Menus.Delegates
             return isInputInteger && isMenuIndexInRange;
         }
 
-        private int GetSelectedItem()
+        private int getSelectedItem()
         {
             string userSelectionStr = Console.ReadLine();
 
-            while (!ValidateInputtedSelection(userSelectionStr))
+            while (!validateInputtedSelection(userSelectionStr))
             {
                 showInvalidInputMessage();
                 displayCurrentMenuLevel();
