@@ -97,7 +97,7 @@ namespace Ex04.Menus.Interfaces
             Console.Clear();
             countItemsInMenu = 0;
 
-            Console.WriteLine("-- [{0}] --", this.ItemText); 
+            Console.WriteLine("-- [{0}] --", this.ItemText);
             Console.WriteLine("[{0] - [{1}]", countItemsInMenu, generateExitOrBackString());
             countItemsInMenu++;
 
@@ -110,7 +110,18 @@ namespace Ex04.Menus.Interfaces
 
         private string generateExitOrBackString()
         {
-            return Root != null ? "Back" : "Exit";
+            string exitOrBack = string.Empty;
+
+            if (Root != null)
+            {
+                exitOrBack = "Back";
+            }
+            else
+            {
+                exitOrBack = "Exit";
+            }
+
+            return exitOrBack;
         }
         
         private bool checkValidInput(int i_UserChoice)
