@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Test
 {
-    internal class ShowTimeItem : IExecutable
+    internal class TimeItem : IExecutable
     {
         public void Execute()
         {

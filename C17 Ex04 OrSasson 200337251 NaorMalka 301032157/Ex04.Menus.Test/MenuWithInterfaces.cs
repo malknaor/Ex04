@@ -10,8 +10,8 @@ namespace Ex04.Menus.Test
     class MenuWithInterfaces
     {
         private readonly MainMenu r_MainMenu;
-        private readonly ShowDateItem r_Date;
-        private readonly ShowTimeItem r_Time;
+        private readonly DateItem r_Date;
+        private readonly TimeItem r_Time;
         private readonly SpaceCounterItem r_SpaceCount;
         private readonly VersionNumberItem r_Version;
 
@@ -19,8 +19,8 @@ namespace Ex04.Menus.Test
         {
             r_MainMenu = new MainMenu();
             MenuItem subMenuToAdd = null;
-            r_Date = new ShowDateItem();
-            r_Time = new ShowTimeItem();
+            r_Date = new DateItem();
+            r_Time = new TimeItem();
             r_SpaceCount = new SpaceCounterItem();
             r_Version = new VersionNumberItem();
 

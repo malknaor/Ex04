@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    public class ExecutableItem : Item , IExecutable
+    internal class ExecutableItem : Item , IExecutable
     {
         private readonly IExecutable m_Executable;
 
@@ -15,17 +15,9 @@ namespace Ex04.Menus.Interfaces
             m_Executable = i_Executable;
         }
 
-        private IExecutable Executable
-        {
-            get
-            {
-                return m_Executable;
-            }
-        }
-
         public override void Execute()
         {
-            Executable.Execute();
+            m_Executable.Execute();
         }
     }
 }

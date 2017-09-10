@@ -42,10 +42,10 @@ namespace Ex04.Menus.Test
         private void addMethodsAndListeners()
         {
             // "Connect" methods to menu items.
-            r_CountSpacesActionMenu.SelectedAction += TestLogic.CountSpacesInString;
-            r_ShowVersionActionMenu.SelectedAction += TestLogic.ShowVersion;
-            r_ShowDateActionMenuItem.SelectedAction += TestLogic.ShowDate;
-            r_ShowTimeActionMenuItem.SelectedAction += TestLogic.ShowTime;
+            r_CountSpacesActionMenu.SelectedAction += TestLogic.countSpacesInString;
+            r_ShowVersionActionMenu.SelectedAction += TestLogic.showVersion;
+            r_ShowDateActionMenuItem.SelectedAction += TestLogic.showDate;
+            r_ShowTimeActionMenuItem.SelectedAction += TestLogic.showTime;
 
             // Adding 1st Sub menu.
             r_VersionAndSpacesSubMenu.Add(r_CountSpacesActionMenu);

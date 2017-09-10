@@ -11,7 +11,7 @@ namespace Ex04.Menus.Test
     {
         private const string k_VersionNumber = "15.3.4.0";
       
-        private static string GetVersionNumber()
+        private static string getVersionNumber()
         {
             return k_VersionNumber;
         }
@@ -19,7 +19,7 @@ namespace Ex04.Menus.Test
         public void Execute()
         {
             Console.Clear();
-            Console.WriteLine("The current Version is: {0}", GetVersionNumber());
+            Console.WriteLine("The current Version is: {0}", getVersionNumber());
             TestLogic.printPressAnyKeyToContinue();
         }
     }

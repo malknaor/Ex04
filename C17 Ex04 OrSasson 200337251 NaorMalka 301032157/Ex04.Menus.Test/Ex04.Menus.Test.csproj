@@ -37,8 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuWithInterfaces.cs" />
-    <Compile Include="ShowDateItem.cs" />
-    <Compile Include="ShowTimeItem.cs" />
+    <Compile Include="DateItem.cs" />
+    <Compile Include="TimeItem.cs" />
     <Compile Include="SpaceCounterItem.cs" />
     <Compile Include="TestLogic.cs" />
     <Compile Include="MenuWithDelegates.cs" />

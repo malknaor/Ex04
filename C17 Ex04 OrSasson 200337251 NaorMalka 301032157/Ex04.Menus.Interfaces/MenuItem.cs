@@ -17,7 +17,7 @@ namespace Ex04.Menus.Interfaces
             r_Root = i_Root;
         }
 
-        public List<Item> MenuItems
+        internal List<Item> MenuItems
         {
             get
             {
@@ -25,7 +25,7 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public MenuItem Root
+        internal MenuItem Root
         {
             get
             {
@@ -48,10 +48,10 @@ namespace Ex04.Menus.Interfaces
 
         public override void Execute()
         {
-            RunMenu();
+            runMenu();
         }
 
-        public void RunMenu()
+        internal void runMenu()
         {
             bool userQuit = false;
             Console.Clear();
